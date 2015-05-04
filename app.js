@@ -1,8 +1,21 @@
-var units = require('./units');
-var Enumerable = require('./node_modules/linq/linq');
+//noinspection SpellCheckingInspection
+var Enumerable = require('linq');
 
-var test = Enumerable.from(units).firstOrDefault(function(x){ return x.name == "Armor"});
+var attacker = {inf: 10, art: 3, arm: 2};
+var defender = {inf: 3, mec: 2, arm: 1, fig: 1};
 
-var x =0;
-x++;
+battleRound(attacker, defender);
 
+
+function battleRound(attacker, defender) {
+    var units = require('./units');
+
+    var defendOnce = Enumerable.from(units)
+        .where(function(x){return x.defendOnce != undefined})
+        .select(function(x){return x.defendOnce})
+        .toArray();
+
+
+
+    var x = 0; x++;
+}

@@ -1,5 +1,6 @@
 var infantry = {
     name: "Infantry",
+    id: "inf",
     attack: 1,
     defense: 2,
     support: {
@@ -11,6 +12,7 @@ var infantry = {
 
 var mechanized = {
     name: "Mechanized Infantry",
+    id: "mec",
     attack: 1,
     defense: 2,
     support: {
@@ -22,6 +24,7 @@ var mechanized = {
 
 var artillery = {
     name: "Artillery",
+    id: "art",
     attack: 2,
     defense: 2,
     support: {
@@ -33,6 +36,7 @@ var artillery = {
 
 var armor = {
     name: "Armor",
+    id: "arm",
     attack: 3,
     defense: 3,
     price: 6
@@ -40,7 +44,8 @@ var armor = {
 
 var aa = {
     name: "AA Gun",
-    attackOnce: {
+    id: "aa",
+    defendOnce: {
         attack: 1,
         rolls: 3,
         attackType: "Air"
@@ -50,6 +55,7 @@ var aa = {
 
 var fighter = {
     name: "Fighter",
+    id: "fig",
     attack: 3,
     defense: 4,
     support: {attack: 4, type: "Tactical"},
@@ -59,6 +65,7 @@ var fighter = {
 
 var tactical = {
     name: "Tactical Bomber",
+    id: "tac",
     attack: 3,
     defense: 3,
     support: {
@@ -71,6 +78,7 @@ var tactical = {
 
 var bomber = {
     name: "Bomber",
+    id: "bom",
     attack: 4,
     defense: 1,
     type: "Air",
