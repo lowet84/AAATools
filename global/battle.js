@@ -25,16 +25,8 @@ var battle = {
             })
             .toArray();
 
-        var grouping = {};
-        for (i = 0; i < unresolved.length; i++) {
-            var roll = unresolved[i];
-            if (grouping[roll.side] == undefined)
-                grouping[roll.side] = {};
-            if (roll.type == undefined)
-                roll.type = "normal";
-            if (grouping[roll.side][roll.type] == undefined)
-                grouping[roll.side][roll.type] = [];
-            grouping[roll.side][roll.type].push(roll);
+        for(i=0;i<unresolved.length;i++){
+
         }
 
 
