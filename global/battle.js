@@ -1,37 +1,64 @@
 var battle = {
     name: "Global",
-    stage: {id:0,description:"AA Guns Fire"},
+    stage: 0,
     type: "Land",
     attacker: {},
     defender: {},
-    aa:require("./aaBattle"),
-    rolls:[],
+    aa: require("./aaBattle"),
+    rolls: [],
     start: function () {
         // resolve aa
-        if (this.stage.id == 0) {
+        if (this.stage == 0) {
             this.rolls = this.aa.battle(this.attacker, this.defender);
-            this.stage = {id:1,description:"Resolve AA Damage"};
+            this.stage = 1;
             return;
         }
+        if (this.stage == 1 && this.rolls.count()) {
+            this.stage = 2;
+        }
     },
-    resolve:function(){
+    resolve: function (attacker, defender) {
+        var unresolved = require("linq")
+            .from(this.rolls)
+            .where(function (d) {
+                return d.value <= d.target
+            })
+            .toArray();
 
+        var grouping = {};
+        for (i = 0; i < unresolved.length; i++) {
+            var roll = unresolved[i];
+            if (grouping[roll.side] == undefined)
+                grouping[roll.side] = {};
+            if (roll.type == undefined)
+                roll.type = "normal";
+            if (grouping[roll.side][roll.type] == undefined)
+                grouping[roll.side][roll.type] = [];
+            grouping[roll.side][roll.type].push(roll);
+        }
+
+
+        var x = 0;
     },
     units: {
-        normal:[
-            {id:"inf",name:"Infantry"},
-            {id:"art",name:"Artillery"},
-            {id:"mec",name:"Mechanized Infantry"},
-            {id:"arm",name:"Armor"},
-            {id:"aa",name:"AA Gun"}],
-        air:[
-            {id:"fig",name:"Fighter"},
-            {id:"tac",name:"Tactical Bomber"},
-            {id:"bom",name:"Bomber"}],
-        upgrades:[
-            {id:"upgrade_aa",name:"AA Upgrade"},
+        normal: [
+            {id: "inf", name: "Infantry"},
+            {id: "art", name: "Artillery"},
+            {id: "mec", name: "Mechanized Infantry"},
+            {id: "arm", name: "Armor"},
+            {id: "aa", name: "AA Gun"}],
+        air: [
+            {id: "fig", name: "Fighter"},
+            {id: "tac", name: "Tactical Bomber"},
+            {id: "bom", name: "Bomber"}],
+        upgrades: [
+            {id: "upgrade_aa", name: "AA Upgrade"},
         ]
-    }
+    },
+    stages: [
+        {id: 0, name: "AA Guns Fire"},
+        {id: 1, name: "Resolve AA Damage"}
+    ]
 }
 
 module.exports = battle;

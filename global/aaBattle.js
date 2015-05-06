@@ -10,7 +10,7 @@ exports.battle = function (attacker, defender) {
 
     var rolls = [];
     for(i=0;i<aaDies;i++){
-        rolls.push({value:Math.ceil(Math.random()*6),target:toRoll, type:"Air"});
+        rolls.push({side:"attacker",value:Math.ceil(Math.random()*6),target:toRoll, type:"air"});
     }
 
     var hits = Enumerable.from(rolls).count(function(x){return x<=toRoll});
