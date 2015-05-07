@@ -4,17 +4,19 @@ var battle = {
     type: "Land",
     attacker: {},
     defender: {},
-    aa: require("./aaBattle"),
     rolls: [],
     start: function () {
         // resolve aa
         if (this.stage == 0) {
-            this.rolls = this.aa.battle(this.attacker, this.defender);
+            var aa = require("./aaBattle");
+            this.rolls = aa.battle(this.attacker, this.defender);
             this.stage = 1;
-            return;
         }
-        if (this.stage == 1 && this.rolls.count()) {
+        else if (this.stage == 1 && this.rolls.count() == 0) {
             this.stage = 2;
+        }
+        else if(this.stage==3){
+
         }
     },
     resolve: function (attacker, defender) {
@@ -25,7 +27,7 @@ var battle = {
             })
             .toArray();
 
-        for(i=0;i<unresolved.length;i++){
+        for (i = 0; i < unresolved.length; i++) {
 
         }
 

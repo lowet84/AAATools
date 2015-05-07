@@ -1,5 +1,6 @@
 exports.battle = function (attacker, defender) {
     var Enumerable = require('linq');
+    var x =0;
     var aaDies = Enumerable.from([defender.aa * 3,
         (attacker.fig ? attacker.fig : 0) +
         (attacker.tac ? attacker.tac : 0) +
